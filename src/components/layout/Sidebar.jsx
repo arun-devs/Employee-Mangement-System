@@ -1,9 +1,10 @@
+import { Link } from "react-router-dom";
 const Sidebar=()=>{
     return(
         <div className="flex justify-items-end">
         <div>
-        <h2>Dashboard</h2>
-        <h2>Employees</h2>
+         <Link to="dashboard" className="block">Dashboard</Link>   
+        <Link to="employees" className="block">Employees</Link>   
         <h2>Departments</h2>
         <h2>Reports</h2>
         <h2>Settings</h2>
