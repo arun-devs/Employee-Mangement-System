@@ -1,9 +1,10 @@
 import DashboardCard from "../components/dashboard/DashboardCard"
+import RecentEmployees from "../components/dashboard/RecentEmployees"
 const Dashboard=()=>{
     return(
         <>
-        <section>
-            <h1>dashboard</h1>
+        <section className="mb-6">
+            <h1 className="text-3xl font-bold text-gray-800">Dashboard</h1>
         </section>
          <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
            <DashboardCard
@@ -31,7 +32,7 @@ const Dashboard=()=>{
             />
         </section>
         <section>
-            Recent Employees Section
+            <RecentEmployees/>
         </section>
         <section>
             Chart Section
