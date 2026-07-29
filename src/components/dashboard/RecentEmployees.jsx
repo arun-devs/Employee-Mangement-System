@@ -1,3 +1,21 @@
+const employees = [
+  {
+    id: 1,
+    name: "Arun",
+    department: "IT",
+    designation: "Developer",
+    status: "Active",
+  },
+  {
+    id: 2,
+    name: "Anjana",
+    department: "HR",
+    designation: "Recruiter",
+    status: "Active",
+  },
+];
+
+
 const RecentEmployees=()=>{
 
     return (
@@ -9,30 +27,34 @@ const RecentEmployees=()=>{
                     <div className="bg-white rounded-lg shadow-sm p-6 w-full">
                         <table className="w-full" >
                                 <thead >
-                                    <tr className="border-b border-gray-200">
+                                    <tr className="border-b border-gray-100 hover:bg-gray-50">
                                         <th className="p-3 text-left">Name</th>
                                         <th className="p-3 text-left">Department</th>
                                         <th className="p-3 text-left">Designation</th>
                                         <th className="p-3 text-left">Status</th>
                                         
-                                    </tr>
+                                    </tr> 
                                     
                                 </thead>
+                               
                                 <tbody>
-
-                                    <tr className="hover:bg-amber-200">
-                                        <td className="p-3">Arun</td>
-                                        <td className="p-3" >IT</td>
-                                        <td className="p-3">Developer</td>
-                                        <td className="p-3">Active</td>
+                                     {employees.map((itm)=>(
+                                     <tr className="hover:bg-gray-50" key={itm.id}>
+                                        <td className="p-3">{itm.name}</td>
+                                        <td className="p-3" >{itm.department}</td>
+                                        <td className="p-3">{itm.designation}</td>
+                                        <td className="p-3">
+                                             <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">
+                                                {itm.status}
+                                            </span>
+                                        </td>
                                     </tr>
+                                    
+                                    
+                                   ) )}
+                                   
 
-                                    <tr className="hover:bg-amber-200">
-                                        <td className="p-3">Rahul</td>
-                                        <td className="p-3">HR</td>
-                                        <td className="p-3">Recruiter</td>
-                                        <td className="p-3">Active</td>
-                                    </tr>
+                                    
 
                                 </tbody>
 

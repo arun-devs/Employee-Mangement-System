@@ -7,7 +7,7 @@ const Layout=()=>{
         <Navbar/>
         <div className="flex">
             <Sidebar/>
-         <main>
+         <main className="flex-1 p-6">
            <Outlet/>
          </main>  
         </div>
