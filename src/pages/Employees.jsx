@@ -1,3 +1,4 @@
+import EmployeeTable from "../components/employees/EmployeeTable";
 const Employees=()=>{
 
         return(
@@ -12,6 +13,12 @@ const Employees=()=>{
                 <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
                     + Add Employee
                 </button>
+            </div>
+            <div >
+                    <input className="border border-gray-300 max-w-md px-4 py-2 rounded-lg " type="text" placeholder="Search Employees"/>
+            </div>
+            <div>
+                <EmployeeTable/>
             </div>
 
         </section>
