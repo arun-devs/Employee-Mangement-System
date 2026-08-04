@@ -10,6 +10,13 @@ const [employee, setEmployee] = useState({
   designation: "",
   status: "Active",
 });
+
+const [errors, setErrors] = useState({
+  code: "",
+  name: "",
+  department: "",
+  designation: "",
+});
  
 const handleChange=(e)=>{
   setEmployee({
@@ -17,9 +24,36 @@ const handleChange=(e)=>{
     [e.target.name]:e.target.value,
   })
 }
+const validateForm = () => {
+  const newErrors = {};
+
+  if (!employee.code.trim()) {
+    newErrors.code = "Employee Code is required";
+  }
+
+  if (!employee.name.trim()) {
+    newErrors.name = "Employee Name is required";
+  }
+
+  if (!employee.department.trim()) {
+    newErrors.department = "Department is required";
+  }
+
+  if (!employee.designation.trim()) {
+    newErrors.designation = "Designation is required";
+  }
+
+  setErrors(newErrors);
+
+  return Object.keys(newErrors).length === 0;
+};
 
 const handleSubmit = (e) => {
   e.preventDefault();
+
+  if (!validateForm()) {
+    return;
+  }
 
   console.log(employee);
 };
@@ -36,16 +70,27 @@ const handleSubmit = (e) => {
       className="grid grid-cols-[180px_1fr] gap-4 items-center"
       onSubmit={handleSubmit}
       >
-
+        
         <label htmlFor="code" >Employee Code</label>
-        <input
+        <div>
+          <input
           id="code"
           type="text"
           name="code"
           value={employee.code}
           onChange={handleChange}
           className="border border-gray-300 rounded-lg px-3 py-2 w-full"
+          
         />
+        {errors.code && (
+          <p className="text-red-500 text-sm">
+            {errors.code}
+          </p>
+        )}
+          
+        </div>
+        
+        
 
         <label htmlFor="name">Employee Name</label>
         <input
