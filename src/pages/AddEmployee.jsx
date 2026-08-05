@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddEmployee = () => {
 // generic form handler
@@ -17,13 +18,24 @@ const [errors, setErrors] = useState({
   department: "",
   designation: "",
 });
+const navigate = useNavigate();
+
+const handllebtncancel=()=>{
+  navigate("/employees")
+}
  
 const handleChange=(e)=>{
   setEmployee({
     ...employee,
     [e.target.name]:e.target.value,
   })
+
+  setErrors({
+    ...errors,
+   [e.target.name]:"" 
+ })
 }
+ 
 const validateForm = () => {
   const newErrors = {};
 
@@ -56,6 +68,22 @@ const handleSubmit = (e) => {
   }
 
   console.log(employee);
+   // Reset Form
+  setEmployee({
+    code: "",
+    name: "",
+    department: "",
+    designation: "",
+    status: "Active",
+  });
+
+  // Clear Errors
+  setErrors({
+    code: "",
+    name: "",
+    department: "",
+    designation: "",
+  });
 };
 
   return (
@@ -93,7 +121,8 @@ const handleSubmit = (e) => {
         
 
         <label htmlFor="name">Employee Name</label>
-        <input
+        <div>
+            <input
           id="name"
           type="text"
           name="name"
@@ -101,6 +130,13 @@ const handleSubmit = (e) => {
           onChange={handleChange}
           className="border border-gray-300 rounded-lg px-3 py-2 w-full"
         />
+          {errors.name && (
+          <p className="text-red-500 text-sm">
+            {errors.name}
+          </p>
+        )}
+        </div>
+      
 
         <label htmlFor="department">Department</label>
         <input
@@ -147,6 +183,7 @@ const handleSubmit = (e) => {
           <button
             type="button"
             className="bg-gray-200 px-5 py-2 rounded-lg hover:bg-gray-300"
+            onClick={handllebtncancel}
           >
             Cancel
           </button>
