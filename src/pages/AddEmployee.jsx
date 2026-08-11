@@ -1,90 +1,110 @@
 
-import { useState } from "react";
+// import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 const AddEmployee = () => {
-// generic form handler
-const [employee, setEmployee] = useState({
-  code: "",
+
+
+//React Hook Form
+const {
+register,
+handleSubmit,
+formState:{errors},
+reset,
+
+}=useForm({
+defaultValues:{
+   code: "",
   name: "",
   department: "",
   designation: "",
   status: "Active",
-});
+}
 
-const [errors, setErrors] = useState({
-  code: "",
-  name: "",
-  department: "",
-  designation: "",
-});
+})
+// generic form handler
+// const [employee, setEmployee] = useState({
+//   code: "",
+//   name: "",
+//   department: "",
+//   designation: "",
+//   status: "Active",
+// });
+
+// const [errors, setErrors] = useState({
+//   code: "",
+//   name: "",
+//   department: "",
+//   designation: "",
+// });
 const navigate = useNavigate();
 
 const handllebtncancel=()=>{
   navigate("/employees")
 }
  
-const handleChange=(e)=>{
-  setEmployee({
-    ...employee,
-    [e.target.name]:e.target.value,
-  })
+// const handleChange=(e)=>{
+//   setEmployee({
+//     ...employee,
+//     [e.target.name]:e.target.value,
+//   })
 
-  setErrors({
-    ...errors,
-   [e.target.name]:"" 
- })
-}
+//   setErrors({
+//     ...errors,
+//    [e.target.name]:"" 
+//  })
+// }
  
-const validateForm = () => {
-  const newErrors = {};
+// const validateForm = () => {
+//   const newErrors = {};
 
-  if (!employee.code.trim()) {
-    newErrors.code = "Employee Code is required";
-  }
+//   if (!employee.code.trim()) {
+//     newErrors.code = "Employee Code is required";
+//   }
 
-  if (!employee.name.trim()) {
-    newErrors.name = "Employee Name is required";
-  }
+//   if (!employee.name.trim()) {
+//     newErrors.name = "Employee Name is required";
+//   }
 
-  if (!employee.department.trim()) {
-    newErrors.department = "Department is required";
-  }
+//   if (!employee.department.trim()) {
+//     newErrors.department = "Department is required";
+//   }
 
-  if (!employee.designation.trim()) {
-    newErrors.designation = "Designation is required";
-  }
+//   if (!employee.designation.trim()) {
+//     newErrors.designation = "Designation is required";
+//   }
 
-  setErrors(newErrors);
+//   setErrors(newErrors);
 
-  return Object.keys(newErrors).length === 0;
-};
+//   return Object.keys(newErrors).length === 0;
+// };
 
-const handleSubmit = (e) => {
-  e.preventDefault();
+// const handleSubmit = (e) => {
+//   e.preventDefault();
 
-  if (!validateForm()) {
-    return;
-  }
+//   if (!validateForm()) {
+//     return;
+//   }
 
-  console.log(employee);
-   // Reset Form
-  setEmployee({
-    code: "",
-    name: "",
-    department: "",
-    designation: "",
-    status: "Active",
-  });
+//   console.log(employee);
+//    // Reset Form
+//   setEmployee({
+//     code: "",
+//     name: "",
+//     department: "",
+//     designation: "",
+//     status: "Active",
+//   });
 
-  // Clear Errors
-  setErrors({
-    code: "",
-    name: "",
-    department: "",
-    designation: "",
-  });
-};
+//   // Clear Errors
+//   setErrors({
+//     code: "",
+//     name: "",
+//     department: "",
+//     designation: "",
+//   });
+// };
 
   return (
 
@@ -105,8 +125,9 @@ const handleSubmit = (e) => {
           id="code"
           type="text"
           name="code"
-          value={employee.code}
-          onChange={handleChange}
+          {...register("code",{required: "Employee Code is required",})}
+          // value={employee.code}
+          // onChange={handleChange}
           className="border border-gray-300 rounded-lg px-3 py-2 w-full"
           
         />
@@ -126,8 +147,9 @@ const handleSubmit = (e) => {
           id="name"
           type="text"
           name="name"
-          value={employee.name}
-          onChange={handleChange}
+          // value={employee.name}
+          // onChange={handleChange}
+           {...register("name",{required: "Employee name is required",})}
           className="border border-gray-300 rounded-lg px-3 py-2 w-full"
         />
           {errors.name && (
@@ -143,8 +165,8 @@ const handleSubmit = (e) => {
           id="department"
           type="text"
           name="department"
-          value={employee.department}
-          onChange={handleChange}
+          // value={employee.department}
+          // onChange={handleChange}
           className="border border-gray-300 rounded-lg px-3 py-2 w-full"
         />
 
@@ -153,8 +175,8 @@ const handleSubmit = (e) => {
           id="designation"
           type="text"
           name="designation"
-          value={employee.designation}
-          onChange={handleChange}
+          // value={employee.designation}
+          // onChange={handleChange}
           className="border border-gray-300 rounded-lg px-3 py-2 w-full"
         />
 
@@ -163,8 +185,8 @@ const handleSubmit = (e) => {
           id="status"
           className="border border-gray-300 rounded-lg px-3 py-2 w-full"
           name="status"
-          value={employee.status}
-          onChange={handleChange}
+          // value={employee.status}
+          // onChange={handleChange}
         >
           <option>Active</option>
           <option>Inactive</option>
