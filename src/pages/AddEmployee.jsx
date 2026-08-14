@@ -43,6 +43,11 @@ const navigate = useNavigate();
 const handllebtncancel=()=>{
   navigate("/employees")
 }
+
+const onSubmit = (data) => {
+  console.log(data);
+  reset();
+};
  
 // const handleChange=(e)=>{
 //   setEmployee({
@@ -116,7 +121,7 @@ const handllebtncancel=()=>{
 
       <form 
       className="grid grid-cols-[180px_1fr] gap-4 items-center"
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(onSubmit)}
       >
         
         <label htmlFor="code" >Employee Code</label>
@@ -133,7 +138,7 @@ const handllebtncancel=()=>{
         />
         {errors.code && (
           <p className="text-red-500 text-sm">
-            {errors.code}
+            {errors.code.message}
           </p>
         )}
           
@@ -154,31 +159,49 @@ const handllebtncancel=()=>{
         />
           {errors.name && (
           <p className="text-red-500 text-sm">
-            {errors.name}
+            {errors.name.message}
           </p>
         )}
         </div>
       
 
         <label htmlFor="department">Department</label>
-        <input
+        <div>
+          <input
           id="department"
           type="text"
           name="department"
           // value={employee.department}
           // onChange={handleChange}
+          {...register("department",{required: "Employee department is required",})}
           className="border border-gray-300 rounded-lg px-3 py-2 w-full"
         />
+          {errors.department && (
+          <p className="text-red-500 text-sm">
+            {errors.name.department}
+          </p>
+        )}
+        </div>
+        
 
         <label htmlFor="designation">Designation</label>
-        <input
+        <div>
+          <input
           id="designation"
           type="text"
           name="designation"
           // value={employee.designation}
           // onChange={handleChange}
+          {...register("designation",{required:"Designation is required"})}
           className="border border-gray-300 rounded-lg px-3 py-2 w-full"
         />
+        {errors.designation && (
+          <p className="text-red-500 text-sm">
+            {errors.name.designation}
+          </p>
+        )}
+        </div>
+        
 
         <label htmlFor="status">Status</label>
         <select
@@ -187,6 +210,7 @@ const handllebtncancel=()=>{
           name="status"
           // value={employee.status}
           // onChange={handleChange}
+          {...register("status")}
         >
           <option>Active</option>
           <option>Inactive</option>
