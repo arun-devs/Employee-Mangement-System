@@ -2,7 +2,15 @@
 // import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+const employeeSchema = z.object({
+  code: z.string().min(1, "Employee Code is required"),
+  name: z.string().min(1, "Employee Name is required"),
+  department: z.string().min(1, "Department is required"),
+  designation: z.string().min(1, "Designation is required"),
+  status: z.string(),
+});
 const AddEmployee = () => {
 
 
@@ -14,6 +22,7 @@ formState:{errors},
 reset,
 
 }=useForm({
+  resolver: zodResolver(employeeSchema),//use employee schema for vlidation
 defaultValues:{
    code: "",
   name: "",
@@ -130,7 +139,7 @@ const onSubmit = (data) => {
           id="code"
           type="text"
           name="code"
-          {...register("code",{required: "Employee Code is required",})}
+          {...register("code")}
           // value={employee.code}
           // onChange={handleChange}
           className="border border-gray-300 rounded-lg px-3 py-2 w-full"
@@ -154,7 +163,7 @@ const onSubmit = (data) => {
           name="name"
           // value={employee.name}
           // onChange={handleChange}
-           {...register("name",{required: "Employee name is required",})}
+           {...register("name")}
           className="border border-gray-300 rounded-lg px-3 py-2 w-full"
         />
           {errors.name && (
@@ -173,7 +182,7 @@ const onSubmit = (data) => {
           name="department"
           // value={employee.department}
           // onChange={handleChange}
-          {...register("department",{required: "Employee department is required",})}
+          {...register("department")}
           className="border border-gray-300 rounded-lg px-3 py-2 w-full"
         />
           {errors.department && (
@@ -192,7 +201,7 @@ const onSubmit = (data) => {
           name="designation"
           // value={employee.designation}
           // onChange={handleChange}
-          {...register("designation",{required:"Designation is required"})}
+          {...register("designation")}
           className="border border-gray-300 rounded-lg px-3 py-2 w-full"
         />
         {errors.designation && (
