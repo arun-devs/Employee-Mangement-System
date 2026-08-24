@@ -1,0 +1,45 @@
+{
+  "employees": [
+    {
+      "code": "a2",
+      "name": "anjana",
+      "department": "it",
+      "designation": "dr",
+      "status": "Active",
+      "id": "OQLEZ7AukyM"
+    },
+    {
+      "code": "arun",
+      "name": "anjana",
+      "department": "it",
+      "designation": "dr",
+      "status": "Active",
+      "id": "K2yqsBFGOdg"
+    },
+    {
+      "code": "003",
+      "name": "devika",
+      "department": "it",
+      "designation": "dr",
+      "status": "Active",
+      "id": "jZq6YsEhSHs"
+    },
+    {
+      "code": "DEC",
+      "name": "Devarajan",
+      "department": "back",
+      "designation": "dr",
+      "status": "Active",
+      "id": "7DGS3Ti4Zo8"
+    },
+    {
+      "code": "a2",
+      "name": "Dev",
+      "department": "it",
+      "designation": "dr",
+      "status": "Inactive",
+      "id": "0d1jyJqletM"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

@@ -4,6 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import employeeService from "../services/employeeService";
+
+
+
 const employeeSchema = z.object({
   code: z.string().min(1, "Employee Code is required"),
   name: z.string().min(1, "Employee Name is required"),
@@ -11,6 +15,8 @@ const employeeSchema = z.object({
   designation: z.string().min(1, "Designation is required"),
   status: z.string(),
 });
+
+
 const AddEmployee = () => {
 
 
@@ -32,6 +38,8 @@ defaultValues:{
 }
 
 })
+
+
 // generic form handler
 // const [employee, setEmployee] = useState({
 //   code: "",
@@ -53,11 +61,12 @@ const handllebtncancel=()=>{
   navigate("/employees")
 }
 
-const onSubmit = (data) => {
+const onSubmit = async(data) => {
+  await employeeService.createEmployee(data);
   console.log(data);
   reset();
 };
- 
+
 // const handleChange=(e)=>{
 //   setEmployee({
 //     ...employee,
@@ -187,7 +196,7 @@ const onSubmit = (data) => {
         />
           {errors.department && (
           <p className="text-red-500 text-sm">
-            {errors.name.department}
+            {errors.department.message}
           </p>
         )}
         </div>
@@ -206,7 +215,7 @@ const onSubmit = (data) => {
         />
         {errors.designation && (
           <p className="text-red-500 text-sm">
-            {errors.name.designation}
+            {errors.designation.message}
           </p>
         )}
         </div>

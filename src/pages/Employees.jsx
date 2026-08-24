@@ -1,6 +1,21 @@
 import EmployeeTable from "../components/employees/EmployeeTable";
 import { Link } from "react-router-dom";
+import employeeService from "../services/employeeService";
+import { useEffect, useState } from "react";
+
 const Employees=()=>{
+const [employees, setEmployees] = useState([]);
+
+ const loadEmployees = async () => {
+const response = await employeeService.getEmployees();
+setEmployees(response.data);
+  console.log(response.data);
+};
+
+    useEffect(() => {
+    loadEmployees();
+    }, []);
+
 
         return(
            <section >
@@ -20,7 +35,7 @@ const Employees=()=>{
                     <input className="border border-gray-300 max-w-md px-4 py-2 rounded-lg " type="text" placeholder="Search Employees"/>
             </div>
             <div>
-                <EmployeeTable/>
+                <EmployeeTable employees={employees}/>
             </div>
 
         </section>

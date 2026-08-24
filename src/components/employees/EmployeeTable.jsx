@@ -1,23 +1,6 @@
-const employees = [
-  {
-    id: 1,
-    code: "EMP001",
-    name: "Anjana",
-    department: "IT",
-    designation: "Developer",
-    status: "Active",
-  },
-  {
-    id: 2,
-    code: "EMP002",
-    name: "Rahul",
-    department: "HR",
-    designation: "Recruiter",
-    status: "Active",
-  },
-];
+import { Link } from "react-router-dom";
 
-const EmployeeTable=()=>{
+const EmployeeTable=({employees})=>{
 
 
     return(
@@ -46,7 +29,31 @@ const EmployeeTable=()=>{
                                        {employee.status}
                             </span>
                     </td>
-                        <td className="p-2">View Edit Delete</td>
+                        
+                        <td className="p-2">
+                            <Link
+                            to={`/employees/${employee.id}`}
+                            className="text-blue-600 hover:underline"
+                            >
+                            View
+                            </Link>
+
+                            <Link
+                            to={`/employees/${employee.id}`}
+                            className="text-blue-600 hover:underline"
+                            >
+                            Edit
+                            </Link>
+
+                            <Link
+                            to={`/employees/${employee.id}`}
+                            className="text-blue-600 hover:underline"
+                            >
+                            Delete
+                            </Link>
+
+
+                        </td>
                              
                     </tr>
 
