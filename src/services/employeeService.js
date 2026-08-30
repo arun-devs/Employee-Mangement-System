@@ -9,7 +9,7 @@ const employeeService ={
     return axiosClient.post("/employees", data);
   },
     getEmployee:(id)=>{
-        return axiosClient.post(`/employee/${id}`)
+        return axiosClient.get(`/employees/${id}`)
     }
 };
 
