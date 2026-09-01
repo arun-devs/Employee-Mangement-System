@@ -10,7 +10,10 @@ const employeeService ={
   },
     getEmployee:(id)=>{
         return axiosClient.get(`/employees/${id}`)
-    }
+    },
+    updateEmployee: (id, data) => {
+    return axiosClient.put(`/employees/${id}`, data);
+  },
 };
 
 export default employeeService;
