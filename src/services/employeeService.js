@@ -14,6 +14,9 @@ const employeeService ={
     updateEmployee: (id, data) => {
     return axiosClient.put(`/employees/${id}`, data);
   },
+  deleteEmployee: (id) => {
+  return axiosClient.delete(`/employees/${id}`);
+},
 };
 
 export default employeeService;

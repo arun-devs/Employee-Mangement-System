@@ -16,6 +16,14 @@ setEmployees(response.data);
     loadEmployees();
     }, []);
 
+    const handleDelete = async (id) => {
+  await employeeService.deleteEmployee(id);
+
+  setEmployees((prevEmployees) =>
+    prevEmployees.filter((employee) => employee.id !== id)
+  );
+};
+
 
         return(
            <section >
@@ -35,7 +43,7 @@ setEmployees(response.data);
                     <input className="border border-gray-300 max-w-md px-4 py-2 rounded-lg " type="text" placeholder="Search Employees"/>
             </div>
             <div>
-                <EmployeeTable employees={employees}/>
+                <EmployeeTable employees={employees}  onDelete={handleDelete}/>
             </div>
 
         </section>

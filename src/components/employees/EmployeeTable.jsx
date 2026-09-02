@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const EmployeeTable=({employees})=>{
+const EmployeeTable=({employees,onDelete })=>{
 
 
     return(
@@ -45,12 +45,13 @@ const EmployeeTable=({employees})=>{
                             Edit
                             </Link>
 
-                            <Link
-                            to={`/employees/${employee.id}`}
-                            className="text-blue-600 hover:underline"
+                           <button
+                            type="button"
+                            onClick={() => onDelete(employee.id)}
+                            className="text-red-600 hover:underline"
                             >
                             Delete
-                            </Link>
+                            </button>
 
 
                         </td>
