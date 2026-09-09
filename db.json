@@ -1,4 +1,21 @@
 {
-  "employees": [],
+  "employees": [
+    {
+      "code": "anjana",
+      "name": "FGGG",
+      "department": "it",
+      "designation": "tt",
+      "status": "Active",
+      "id": "YYK3HI6L6H0"
+    },
+    {
+      "code": "arun",
+      "name": "Dev",
+      "department": "it",
+      "designation": "dr",
+      "status": "Active",
+      "id": "1sygrzH69dY"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }

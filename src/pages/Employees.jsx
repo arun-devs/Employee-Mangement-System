@@ -7,6 +7,7 @@ const Employees=()=>{
 const [employees, setEmployees] = useState([]);
 const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 const [selectedEmployeeId, setSelectedEmployeeId] = useState(null);
+const [searchTerm, setSearchTerm] = useState("");
  const loadEmployees = async () => {
 const response = await employeeService.getEmployees();
 setEmployees(response.data);
@@ -41,6 +42,10 @@ setEmployees(response.data);
     setSelectedEmployeeId(null);
   };
 
+  const filteredEmployees = employees.filter((employee) =>
+  employee.name.toLowerCase().includes(searchTerm.toLowerCase())
+);
+
 
 
         return(
@@ -58,12 +63,15 @@ setEmployees(response.data);
                
             </div>
             <div >
-                    <input className="border border-gray-300 max-w-md px-4 py-2 rounded-lg " type="text" placeholder="Search Employees"/>
+                    <input className="border border-gray-300 max-w-md px-4 py-2 rounded-lg " type="text" placeholder="Search Employees" 
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    />
             </div>
             
             <div>
             
-                <EmployeeTable employees={employees}  onDelete={handleDelete}/>
+                <EmployeeTable employees={filteredEmployees}  onDelete={handleDelete}/>
                 
             </div>
         {/* DELETE CONFIRMATION UI */}
