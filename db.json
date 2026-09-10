@@ -11,10 +11,18 @@
     {
       "code": "arun",
       "name": "Dev",
+      "department": "HR",
+      "designation": "HR",
+      "status": "Active",
+      "id": "1sygrzH69dY"
+    },
+    {
+      "code": "DEC",
+      "name": "anjana",
       "department": "it",
       "designation": "dr",
       "status": "Active",
-      "id": "1sygrzH69dY"
+      "id": "eKPO9PSgF8E"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

@@ -8,10 +8,24 @@ const [employees, setEmployees] = useState([]);
 const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
 const [selectedEmployeeId, setSelectedEmployeeId] = useState(null);
 const [searchTerm, setSearchTerm] = useState("");
- const loadEmployees = async () => {
-const response = await employeeService.getEmployees();
-setEmployees(response.data);
-  console.log(response.data);
+const [department, setDepartment] = useState("All");
+const [loading, setLoading] = useState(true);
+const [error, setError] = useState(null);
+//  const loadEmployees = async () => {
+// const response = await employeeService.getEmployees();
+// setEmployees(response.data);
+//   console.log(response.data);
+// };
+const loadEmployees = async () => {
+  try {
+    const response = await employeeService.getEmployees();
+    setEmployees(response.data);
+  } catch (error) {
+    setError("Failed to load employees");
+    console.log(error);
+  } finally {
+    setLoading(false);
+  }
 };
 
     useEffect(() => {
@@ -42,8 +56,10 @@ setEmployees(response.data);
     setSelectedEmployeeId(null);
   };
 
-  const filteredEmployees = employees.filter((employee) =>
-  employee.name.toLowerCase().includes(searchTerm.toLowerCase())
+ const filteredEmployees = employees.filter(
+  employee =>
+    employee.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+    (department === "All" || employee.department === department)
 );
 
 
@@ -61,7 +77,16 @@ setEmployees(response.data);
                     + Add Employee
                 </Link>
                
-            </div>
+            </div><select
+                      value={department}
+                      onChange={(e) => setDepartment(e.target.value)}
+                      className="border border-gray-300 px-4 py-2 rounded-lg"
+                    >
+                      <option value="All">All Departments</option>
+                      <option value="IT">IT</option>
+                      <option value="HR">HR</option>
+                      <option value="Finance">Finance</option>
+                    </select>
             <div >
                     <input className="border border-gray-300 max-w-md px-4 py-2 rounded-lg " type="text" placeholder="Search Employees" 
                     value={searchTerm}
@@ -70,8 +95,22 @@ setEmployees(response.data);
             </div>
             
             <div>
+                {error && (
+                  <p className="text-red-600 mb-4">
+                    {error}
+                  </p>
+                )}
+                
             
-                <EmployeeTable employees={filteredEmployees}  onDelete={handleDelete}/>
+                {/* <EmployeeTable employees={filteredEmployees}  onDelete={handleDelete}/> */}
+                {loading ? (
+                            <p>Loading employees...</p>
+                          ) : (
+                            <EmployeeTable
+                              employees={filteredEmployees}
+                              onDelete={handleDelete}
+                            />
+                          )}
                 
             </div>
         {/* DELETE CONFIRMATION UI */}
