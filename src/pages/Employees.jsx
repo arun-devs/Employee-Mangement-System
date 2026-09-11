@@ -100,17 +100,19 @@ const loadEmployees = async () => {
                     {error}
                   </p>
                 )}
-                
+
             
                 {/* <EmployeeTable employees={filteredEmployees}  onDelete={handleDelete}/> */}
                 {loading ? (
-                            <p>Loading employees...</p>
-                          ) : (
-                            <EmployeeTable
-                              employees={filteredEmployees}
-                              onDelete={handleDelete}
-                            />
-                          )}
+                      <p>Loading employees...</p>
+                    ) : filteredEmployees.length === 0 ? (
+                      <p className="text-gray-500">No employees found.</p>
+                    ) : (
+                      <EmployeeTable
+                        employees={filteredEmployees}
+                        onDelete={handleDelete}
+                      />
+                    )}
                 
             </div>
         {/* DELETE CONFIRMATION UI */}
