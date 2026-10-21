@@ -5,10 +5,10 @@ const Sidebar=()=>{
         <div>
          <NavLink to="dashboard" className={({isActive})=>{return isActive? "block px-3 py-2 rounded-md bg-blue-600 font-semibold":"block px-3 py-2 rounded-md hover:bg-gray-700" }}>Dashboard</NavLink>   
         <NavLink to="employees" className={({isActive})=>{return isActive? "block px-3 py-2 rounded-md bg-blue-600 font-semibold":"block px-3 py-2 rounded-md hover:bg-gray-700"}}>Employees</NavLink>   
-        <h2>Departments</h2>
+        {/* <h2>Departments</h2>
         <h2>Reports</h2>
         <h2>Settings</h2>
-         <h2>Logout</h2>
+         <h2>Logout</h2> */}
         </div>
          </div>
     )
