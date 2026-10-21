@@ -1,28 +1,53 @@
+
 {
   "employees": [
     {
-      "code": "anjana",
-      "name": "FGGG",
-      "department": "it",
-      "designation": "tt",
+      "code": "EMP001",
+      "name": "Ananya Nair",
+      "department": "IT",
+      "designation": "Frontend Developer",
       "status": "Active",
-      "id": "YYK3HI6L6H0"
+      "id": "EMP001"
     },
     {
-      "code": "arun",
-      "name": "Dev",
+      "code": "EMP002",
+      "name": "Rahul Menon",
       "department": "HR",
-      "designation": "HR",
+      "designation": "HR Executive",
       "status": "Active",
-      "id": "1sygrzH69dY"
+      "id": "EMP002"
     },
     {
-      "code": "DEC",
-      "name": "anjana",
-      "department": "it",
-      "designation": "dr",
+      "code": "EMP003",
+      "name": "Neha Thomas",
+      "department": "Finance",
+      "designation": "Accountant",
       "status": "Active",
-      "id": "eKPO9PSgF8E"
+      "id": "EMP003"
+    },
+    {
+      "code": "EMP004",
+      "name": "Arjun Kumar",
+      "department": "IT",
+      "designation": "Software Engineer",
+      "status": "Active",
+      "id": "EMP004"
+    },
+    {
+      "code": "EMP005",
+      "name": "Meera Joseph",
+      "department": "HR",
+      "designation": "Talent Acquisition Specialist",
+      "status": "Active",
+      "id": "EMP005"
+    },
+    {
+      "code": "EMP006",
+      "name": "Vishnu Raj",
+      "department": "Finance",
+      "designation": "Financial Analyst",
+      "status": "Inactive",
+      "id": "EMP006"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
