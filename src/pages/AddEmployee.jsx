@@ -61,12 +61,18 @@ const handllebtncancel=()=>{
   navigate("/employees")
 }
 
-const onSubmit = async(data) => {
-  await employeeService.createEmployee(data);
-  console.log(data);
-  reset();
-};
+const onSubmit = async (data) => {
+  try {
+    await employeeService.createEmployee(data);
 
+    navigate("/employees", {
+      state: { successMessage: "Employee added successfully!" },
+    });
+  } catch (error) {
+    console.error("Failed to add employee:", error);
+    alert("Failed to save employee. Please try again.");
+  }
+};
 // const handleChange=(e)=>{
 //   setEmployee({
 //     ...employee,

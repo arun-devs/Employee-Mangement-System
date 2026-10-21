@@ -2,7 +2,7 @@ import EmployeeTable from "../components/employees/EmployeeTable";
 import { Link } from "react-router-dom";
 import employeeService from "../services/employeeService";
 import { useEffect, useState } from "react";
-
+import { useLocation } from "react-router-dom";
 const Employees=()=>{
 const [employees, setEmployees] = useState([]);
 const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
@@ -16,6 +16,8 @@ const [error, setError] = useState(null);
 // setEmployees(response.data);
 //   console.log(response.data);
 // };
+const location = useLocation();
+const successMessage = location.state?.successMessage;
 const loadEmployees = async () => {
   try {
     const response = await employeeService.getEmployees();
@@ -86,6 +88,16 @@ const loadEmployees = async () => {
         Add Employee
       </Link>
     </div>
+
+    {/* MESSAGE STATUS */}
+    {successMessage && (
+  <div className="mb-4 flex items-center gap-3 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm font-medium text-green-800">
+    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-green-100">
+      ✓
+    </span>
+    {successMessage}
+  </div>
+)}
 
     {/* Search and filters */}
     <div className="flex flex-col gap-3 rounded-xl border border-gray-200 bg-white p-4 shadow-sm sm:flex-row">
